@@ -1,0 +1,1 @@
+Fakesite.register TestFakesite.new

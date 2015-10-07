@@ -1,0 +1,55 @@
+<h2>
+	Fakesite - <%=@id %>
+</h2>
+<h3>Request Host</h3>
+<p><%= @uri.to_s.split('?')[0] %></p>
+<h3>Request Parameters</h3>
+<table>
+  <colgroup>
+    <col width="200px"></col>
+    <col></col>
+  </colgroup>
+  <tr>
+    <th>Key</th>
+    <th>Value</th>
+  </tr>
+  <% Rack::Utils.parse_nested_query(@uri.query).each do |key, value| %>
+    <tr>
+      <td>
+        <%= key %>
+      </td>
+      <td>
+        <%= value %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<h3>Return Parameters</h3>
+<%= form_tag redirect_fakesite_path(@id), :method => :get do %>
+	<table>
+	  <colgroup>
+	    <col width="200px"></col>
+	    <col></col>
+	  </colgroup>
+	  <tr>
+	    <th>Key</th>
+	    <th>Value</th>
+	  </tr>
+	  <% @parameters.each do |key, value| %>
+	    <tr>
+	      <td>
+	        <%= label_tag "p[#{key}]", key %>
+	      </td>
+	      <td>
+	        <%= text_field_tag "p[#{key}]", value %>
+	      </td>
+	    </tr>
+	  <% end %>
+	  <tr>
+      <td colspan="2" class="center">
+      	<%= hidden_field_tag :url, params[:url] %>
+        <button type="submit" class="btn btn-default">Return</button>
+      </td>
+    </tr>
+	</table>
+<% end %>
