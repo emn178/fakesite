@@ -4,10 +4,10 @@ require 'coveralls'
 SimpleCov.add_filter "/spec/"
 
 if ENV["COVERAGE"]
-	SimpleCov.start
+  SimpleCov.start
 elsif ENV["COVERALLS"]
-	SimpleCov.formatter = Coveralls::SimpleCov::Formatter
-	Coveralls.wear!
+  SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+  Coveralls.wear!
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
