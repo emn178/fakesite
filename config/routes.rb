@@ -1,7 +1,7 @@
 Fakesite::Engine.routes.draw do
   resources :fakesites, :path => '/', :only => [:show] do
     member do 
-      get 'redirect'
+      post 'redirect'
     end
   end
 end

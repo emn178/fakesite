@@ -1,3 +1,7 @@
+# v0.1.2 / 2015-10-12
+
+* Change redirect action to HTTP POST.
+
 # v0.1.1 / 2015-10-08
 
 * Refine format.

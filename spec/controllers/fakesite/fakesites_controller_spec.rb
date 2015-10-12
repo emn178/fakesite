@@ -10,7 +10,7 @@ RSpec.describe Fakesite::FakesitesController, type: :controller do
   end
 
   describe "#redirect" do
-    before { get :redirect, :id => :test, :url => 'http://test.com/?key1=val1&return_url=http%3A%2F%2Flocalhost%3A3000%2F', :p => {:test_key1 => 'value1'} }
+    before { post :redirect, :id => :test, :url => 'http://test.com/?key1=val1&return_url=http%3A%2F%2Flocalhost%3A3000%2F', :p => {:test_key1 => 'value1'} }
     it { expect(response).to redirect_to('http://localhost:3000/?return=1&test_key1=value1') }
   end
 end
