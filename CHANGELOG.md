@@ -1,3 +1,7 @@
+# v0.1.3 / 2015-10-12
+
+* Support old version rails.
+
 # v0.1.2 / 2015-10-12
 
 * Change redirect action to HTTP POST.
