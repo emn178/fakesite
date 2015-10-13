@@ -10,11 +10,11 @@ Gem::Specification.new do |s|
   s.authors     = ["Chen Yi-Cyuan"]
   s.email       = ["emn178@gmail.com"]
   s.homepage    = "https://github.com/emn178/fakesite"
-  s.summary     = "An rails plugin that provides a stub framework to stub 3-party redirect page such as payment or oauth login."
-  s.description = "An rails plugin that provides a stub framework to stub 3-party redirect page such as payment or oauth login."
+  s.summary     = "An rails plugin that provides a fake framework to stub 3-party redirect page such as payment or oauth login."
+  s.description = "An rails plugin that provides a fake framework to stub 3-party redirect page such as payment or oauth login."
   s.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*", "LICENSE.txt", "Rakefile", "README.md"]
 
   s.add_dependency "rails", ">= 4.0.0"
 

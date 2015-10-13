@@ -3,7 +3,7 @@
 [![Build Status](https://api.travis-ci.org/emn178/fakesite.png)](https://travis-ci.org/emn178/fakesite)
 [![Coverage Status](https://coveralls.io/repos/emn178/fakesite/badge.svg?branch=master)](https://coveralls.io/r/emn178/fakesite?branch=master)
 
-An rails plugin that provides a stub framework to stub 3-party redirect page such as payment or oauth login.
+An rails plugin that provides a fake framework to stub 3-party redirect page such as payment or oauth login.
 
 ## Installation
 
@@ -31,36 +31,55 @@ Inherit `Fakesite::Base` class and implement methods:
 
 ```ruby
 class TestFakesite < Fakesite::Base
-	# assign an unique id for this fakesite
-	def id
-		:test
-	end
+  # specify what the parameters will return to your site
+  def parameters
+    {:test_key1 => :value1, :test_key2 => :value2}
+  end
 
-	# implement the rule to stub external page by redirect url
-	def match(external_uri)
-		external_uri.host == "test.com"
-	end
+  # overwrite where to return, default using return_url in external_uri query string if exsit
+  def return_url
+    external_params["custom_url"]
+  end
 
-	# specify what the parameters will return to your site
-	def parameters(external_uri)
-		{:test_key1 => :value1, :test_key2 => :value2}
-	end
+  # overwrite the parameters that will pass to return_url. default is params, you can do something here
+  # def return_parameters
+  #   params
+  # end
 
-	# overwrite where to return, default using return_url in external_uri query string if exsit
-	def return_url(external_uri)
-		params = query_to_hash(external_uri)
-		params["custom_url"]
-	end
+  # implement the rule to stub external page by redirect url
+  def self.match(external_uri)
+    external_uri.host == "test.com"
+  end
+
+  # after register event
+  # def self.after_register
+  # end
 end
 ```
+
+### Class Members
+You can use following properties and methods in instance of Fakesite::Base class:
+
+#### options
+The options that you registered.
+
+#### external_uri
+The original uri of external third-party.
+
+#### external_params
+The parameters of external_uri in query string.
+
+#### params
+The post parameters in the fakesite page.
+
 
 ### Register Fakesite
 You can register your fakesites when rails initialize.
 ```Ruby
 if Rails.env.development?
-	Fakesite.register TestFakesite.new
-	# You can also pass some options if needs, and using by @options in your class
-	# Fakesite.register TestFakesite.new {:your => :option}
+  Fakesite.register :test, TestFakesite
+  # You can also pass some options if needs, and using by options in your class
+  # Fakesite.register :test, TestFakesite, {:your => :option}
 end
 ```
 

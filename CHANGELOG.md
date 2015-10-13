@@ -1,3 +1,8 @@
+# v0.2.0 / 2015-10-13
+
+* Rewrite framework to enable creating instance per request.
+* Add after_register event.
+
 # v0.1.3 / 2015-10-12
 
 * Support old version rails.

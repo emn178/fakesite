@@ -1,1 +1,1 @@
-Fakesite.register TestFakesite.new
+Fakesite.register :test, TestFakesite

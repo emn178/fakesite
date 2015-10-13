@@ -35,7 +35,7 @@
       <th>Key</th>
       <th>Value</th>
     </tr>
-    <% @parameters.each do |key, value| %>
+    <% @fakesite.parameters.each do |key, value| %>
       <tr>
         <td>
           <%= label_tag "p[#{key}]", key %>
@@ -47,7 +47,7 @@
     <% end %>
     <tr>
       <td colspan="2" class="center">
-        <%= hidden_field_tag :url, params[:url] %>
+        <%= hidden_field_tag :serialization, @fakesite.serialize %>
         <button type="submit" class="btn btn-default">Return</button>
       </td>
     </tr>
