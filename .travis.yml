@@ -7,3 +7,6 @@ branches:
     - master
 env:
   - COVERALLS=1
+before_script: 
+  - RAILS_ENV=test rake db:create
+  - RAILS_ENV=test rake db:migrate
