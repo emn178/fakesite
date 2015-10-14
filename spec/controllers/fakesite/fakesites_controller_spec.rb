@@ -3,10 +3,30 @@ RSpec.describe Fakesite::FakesitesController, type: :controller do
   subject { response }
 
   describe "#show" do
-    before { get :show, :id => :test, :url => 'http://test.com/?key1=val1&return_url=http%3A%2F%2Flocalhost%3A3000%2F' }
-    it { should have_http_status(:ok) }
-    it { expect(assigns(:id)).to eq("test") }
-    it { expect(assigns(:fakesite).parameters).to eq({:test_key1 => :value1, :test_key2 => :value2}) }
+    let(:user) { 
+      User.create! :email => "emn178@gmail.com", :password => "1234qwer" if User.all.size == 0 
+      User.first
+    }
+    before { allow(Time).to receive(:now).and_return(Time.at(1441197000)) }
+
+    context "with user" do
+      let(:key) { 'fakesite:1441197000' }
+      before { 
+        Rails.cache.write(key, user)
+        get :show, :id => :test, :url => 'http://test.com/?key1=val1&return_url=http%3A%2F%2Flocalhost%3A3000%2F', :key => key
+      }
+      it { should have_http_status(:ok) }
+      it { expect(assigns(:id)).to eq("test") }
+      it { expect(assigns(:fakesite).parameters).to eq({:test_key1 => :value1, :test_key2 => :value2}) }
+      it { expect(assigns(:fakesite).user).not_to eq(nil) }
+      it { expect(Rails.cache.fetch(key)).to eq(nil) }
+    end
+
+    context "without user" do
+      before { get :show, :id => :test, :url => 'http://test.com/?key1=val1&return_url=http%3A%2F%2Flocalhost%3A3000%2F' }
+      it { should have_http_status(:ok) }
+      it { expect(assigns(:fakesite).user).to eq(nil) }
+    end
   end
 
   describe "#redirect" do

@@ -4,6 +4,8 @@ require "fakesite/base"
 require "fakesite/registration"
 
 module Fakesite
+  CacheKey = "fakesite"
+
   @@initialized = false
   @@registrations = {}
 
@@ -27,6 +29,10 @@ module Fakesite
 
   def self.find(id)
     @@registrations[id.to_sym]
+  end
+
+  def self.generate_cache_key
+    "#{CacheKey}:#{Time.now.to_i}"
   end
 
   private

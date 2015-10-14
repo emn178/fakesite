@@ -13,6 +13,7 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+gem 'devise'
 gem 'spring'
 gem 'spring-commands-rspec'
 gem 'simplecov', :require => false

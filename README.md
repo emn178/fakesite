@@ -72,6 +72,9 @@ The parameters of external_uri in query string.
 #### params
 The post parameters in the fakesite page.
 
+#### user
+`current_user` instance from devise if exists.
+
 
 ### Register Fakesite
 You can register your fakesites when rails initialize.

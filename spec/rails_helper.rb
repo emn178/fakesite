@@ -4,7 +4,7 @@ require 'coveralls'
 SimpleCov.add_filter "/spec/"
 
 if ENV["COVERAGE"]
-  SimpleCov.start
+  SimpleCov.start 'rails'
 elsif ENV["COVERALLS"]
   SimpleCov.formatter = Coveralls::SimpleCov::Formatter
   Coveralls.wear!
@@ -16,8 +16,8 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-
-
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'fakesite'
 require 'rspec/its'
+
+RSpec.configure do |config|
+  config.include Devise::TestHelpers, type: :controller
+end

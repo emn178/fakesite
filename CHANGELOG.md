@@ -1,3 +1,7 @@
+# v0.2.1 / 2015-10-14
+
+* Get current_user from devise.
+
 # v0.2.0 / 2015-10-13
 
 * Rewrite framework to enable creating instance per request.

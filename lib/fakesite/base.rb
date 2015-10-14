@@ -2,7 +2,7 @@ require 'yaml'
 
 module Fakesite
   class Base
-    attr_accessor :external_uri, :options, :params
+    attr_accessor :external_uri, :options, :params, :user
 
     def initialize(options = {})
       self.options = options
@@ -28,8 +28,16 @@ module Fakesite
       YAML.dump(self)
     end
 
+    def reload_user
+      user.reload if !user.nil? && user.respond_to?(:reload)
+    end
+
     def self.match(external_uri)
       false
+    end
+
+    def self.deserialize(source)
+      YAML.load(source)
     end
 
     def self.after_register
