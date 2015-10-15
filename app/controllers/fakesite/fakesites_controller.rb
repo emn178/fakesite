@@ -7,18 +7,13 @@ module Fakesite
       @id = params[:id]
       @fakesite = @registration.create
       @fakesite.external_uri = @uri
-      key = params[:key]
-      if key
-        @fakesite.user = Rails.cache.fetch(key)
-        Rails.cache.delete(key)
-        @fakesite.reload_user
-      end
+      setup_user
     end
 
     def redirect
       @fakesite = @registration.deserialize(params[:serialization])
-      @fakesite.reload_user
       @fakesite.params = params[:p]
+      setup_user
       redirect_to @fakesite.redirect_url
     end
 
@@ -26,6 +21,10 @@ module Fakesite
 
     def find_registration
       @registration = Fakesite.find(params[:id])
+    end
+
+    def setup_user
+      @fakesite.user = current_user if respond_to? :current_user
     end
   end
 end

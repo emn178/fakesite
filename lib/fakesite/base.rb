@@ -25,11 +25,11 @@ module Fakesite
     end
 
     def serialize
-      YAML.dump(self)
-    end
-
-    def reload_user
-      user.reload if !user.nil? && user.respond_to?(:reload)
+      tmp = user
+      self.user = nil
+      serialization = YAML.dump(self)
+      self.user = tmp
+      serialization
     end
 
     def self.match(external_uri)

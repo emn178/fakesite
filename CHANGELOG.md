@@ -1,3 +1,7 @@
+# v0.2.2 / 2015-10-15
+
+* Rewrite current_user method.
+
 # v0.2.1 / 2015-10-14
 
 * Get current_user from devise.
