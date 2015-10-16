@@ -1,5 +1,6 @@
 require 'uri'
 require "fakesite/engine"
+require "fakesite/stub"
 require "fakesite/base"
 require "fakesite/registration"
 
@@ -35,5 +36,6 @@ module Fakesite
     return if @@initialized
     @@initialized = true
     require "fakesite/action_controller"
+    require "fakesite/omniauth_strategy"
   end
 end

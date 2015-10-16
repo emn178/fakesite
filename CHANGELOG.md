@@ -1,3 +1,7 @@
+# v0.2.3 / 2015-10-16
+
+* Support omniauth redirect.
+
 # v0.2.2 / 2015-10-15
 
 * Rewrite current_user method.

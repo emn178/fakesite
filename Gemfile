@@ -14,6 +14,7 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 gem 'devise'
+gem 'omniauth'
 gem 'spring'
 gem 'spring-commands-rspec'
 gem 'simplecov', :require => false
