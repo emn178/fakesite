@@ -3,7 +3,8 @@
 [![Build Status](https://api.travis-ci.org/emn178/fakesite.png)](https://travis-ci.org/emn178/fakesite)
 [![Coverage Status](https://coveralls.io/repos/emn178/fakesite/badge.svg?branch=master)](https://coveralls.io/r/emn178/fakesite?branch=master)
 
-An rails plugin that provides a fake framework to stub 3-party redirect page such as payment or oauth login.
+A rails plugin that provides a fake framework to stub 3-party redirect page such as payment or oauth login.  
+![image](https://cloud.githubusercontent.com/assets/3477613/13944979/c9564a6a-f044-11e5-8d50-9653d51746e1.png)
 
 ## Installation
 
@@ -87,6 +88,10 @@ end
 ```
 
 You can put the registration in `config/initializers/fakesite.rb`
+
+## Plugins
+[fakesite-alipay](https://github.com/emn178/fakesite-alipay)  
+[fakesite-wechat](https://github.com/emn178/fakesite-wechat)
 
 ## License
 
